@@ -39,4 +39,4 @@ jobs:
         run:  |
           cp abc.txt ./ab.txt
           aws ssm start-session --target i-071a4716e15bd8b94
-          Copy-Item -Path $env:./ab.txt -Destination C:\deployment
+          Copy-Item -Path ./ab.txt -Destination C:\deployment
