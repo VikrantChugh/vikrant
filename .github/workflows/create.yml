@@ -16,7 +16,9 @@ jobs:
     steps:
       
       - uses: actions/checkout@v3
-     
+      - name: Start Session Manager session
+        run: |
+          aws ssm start-session --target i-071a4716e15bd8b94
 
         
       
