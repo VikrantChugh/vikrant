@@ -34,4 +34,4 @@ jobs:
         run: |
           pwd
           ls
-        # scp -i /path/to/private/key.pem $GITHUB_WORKSPACE/path/to/file username@private-ip-of-windows-server:/path/on/ec2/
+          scp -i ./Test-discovery.pem ./abc.txt Administrator@10.10.2.12:C:\deployment
