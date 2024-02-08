@@ -51,6 +51,9 @@ jobs:
           cp abc.txt ./ab.txt
           # aws ecs execute-command ...
           sudo apt-get install expect
+          aws ecs execute-command \
+          --region us-east-1 \
+          --command "/bin/sh -c 'ls /tmp/folderthatdoesntexist && echo ok'" | grep ok
           aws ssm start-session --target i-071a4716e15bd8b94
       # - name: git
       #   run: |
