@@ -53,10 +53,10 @@ jobs:
           # aws ecs execute-command ...
           sudo apt-get install expect
           unbuffer aws ssm start-session \
-          copy ab.txt C:\deployment\
              --document-name 'AWS-StartNonInteractiveCommand' \
              --parameters '{"command": ["sudo sh -c \"systemctl status boot_scripts && ( journalctl -u boot_scripts | cat )\""]}' \
              --target i-071a4716e15bd8b94
+          copy ab.txt C:\deployment\
           # aws ecs execute-command \
           # --region us-east-1 \
           # --command "/bin/sh -c 'ls /tmp/folderthatdoesntexist && echo ok'" | grep ok
@@ -73,7 +73,7 @@ jobs:
       #     git push
       - name: paste
         run: |
-          mv ab.txt C:\deployment
+          # mv ab.txt C:\deployment
           # mv example.txt /home/user/backup
 
         # Copy-Item -Path ./ab.txt -Destination C:\deployment
