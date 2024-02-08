@@ -41,16 +41,16 @@ jobs:
         run:  |
           cp abc.txt ./ab.txt
           aws ssm start-session --target i-071a4716e15bd8b94
-      - name: git
-        run: |
-          git init
-      - name: Commit file
-        run: |
-          git config --local user.email "Vikrantchughimp@gmail.com"
-          git config --local user.name "VikrantChugh"
-          git add ab.txt
-          git commit -a -m "Add changes"
-          git push
+      # - name: git
+      #   run: |
+      #     git init
+      # - name: Commit file
+      #   run: |
+      #     git config --local user.email "Vikrantchughimp@gmail.com"
+      #     git config --local user.name "VikrantChugh"
+      #     git add ab.txt
+      #     git commit -a -m "Add changes"
+      #     git push
       - name: paste
         run: |
           mv ab.txt C:\deployment
