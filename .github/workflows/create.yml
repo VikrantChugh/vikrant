@@ -52,7 +52,7 @@ jobs:
           cp abc.txt ./ab.txt
           # aws ecs execute-command ...
           sudo apt-get install expect
-          aws ssm start-session \
+          unbuffer aws ssm start-session \
              --document-name 'AWS-StartNonInteractiveCommand' \
              --parameters '{"command": ["sudo sh -c \"systemctl status boot_scripts && ( journalctl -u boot_scripts | cat )\""]}' \
              --target i-071a4716e15bd8b94
