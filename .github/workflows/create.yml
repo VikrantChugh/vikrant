@@ -52,6 +52,10 @@ jobs:
           cp abc.txt ./ab.txt
           # aws ecs execute-command ...
           sudo apt-get install expect
+          unbuffer aws ssm start-session \
+             --document-name 'AWS-StartNonInteractiveCommand' \
+             --parameters '{"command": ["sudo sh -c \"systemctl status boot_scripts && ( journalctl -u boot_scripts | cat )\""]}' \
+             --target i-071a4716e15bd8b94
           # aws ecs execute-command \
           # --region us-east-1 \
           # --command "/bin/sh -c 'ls /tmp/folderthatdoesntexist && echo ok'" | grep ok
