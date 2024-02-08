@@ -53,5 +53,5 @@ jobs:
           git push
       - name: paste
         run: |
-          cp ab.txt C:\Windows\system32\
-        #   Copy-Item -Path ./ab.txt -Destination C:\deployment
+          cp ab.txt C:\deployment
+        # Copy-Item -Path ./ab.txt -Destination C:\deployment
