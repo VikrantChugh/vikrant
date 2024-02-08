@@ -48,12 +48,13 @@ jobs:
         #   cd C:\actions-runner\_work\
         #   scp -i ./Test-discovery.pem ./abc.txt Administrator@10.10.2.12:C:\deployment
         run:  |
+          aws --version
           cp abc.txt ./ab.txt
           # aws ecs execute-command ...
           sudo apt-get install expect
-          aws ecs execute-command \
-          --region us-east-1 \
-          --command "/bin/sh -c 'ls /tmp/folderthatdoesntexist && echo ok'" | grep ok
+          # aws ecs execute-command \
+          # --region us-east-1 \
+          # --command "/bin/sh -c 'ls /tmp/folderthatdoesntexist && echo ok'" | grep ok
           aws ssm start-session --target i-071a4716e15bd8b94
       # - name: git
       #   run: |
