@@ -30,8 +30,8 @@ jobs:
       - name: Start Session Manager session
         run: |
           aws ssm start-session --target i-071a4716e15bd8b94
-      - name: Copy file to Windows server
-        run: |
-          pwd
-          ls
-          scp -i ./Test-discovery.pem ./abc.txt Administrator@10.10.2.12:C:\deployment
+      # - name: Copy file to Windows server
+      #   run: |
+      #     pwd
+      #     ls
+      #     scp -i ./Test-discovery.pem ./abc.txt Administrator@10.10.2.12:C:\deployment
