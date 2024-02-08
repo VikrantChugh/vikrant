@@ -10,7 +10,7 @@ env:
 jobs:
   terraform_pipeline_destroy:
     name: vikrant
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     
     steps:
@@ -32,10 +32,10 @@ jobs:
       #   run: |
       #     aws ssm start-session --target i-071a4716e15bd8b94
       - name: Copy file to Windows server
-        run: |
-          cd C:\actions-runner\_work\
+        # run: |
+        #   cd C:\actions-runner\_work\
         #   scp -i ./Test-discovery.pem ./abc.txt Administrator@10.10.2.12:C:\deployment
-        # run:  |
-        #   cp abc.txt ./ab.txt
-        #   aws ssm start-session --target i-071a4716e15bd8b94
+        run:  |
+          cp abc.txt ./ab.txt
+          aws ssm start-session --target i-071a4716e15bd8b94
         #   Copy-Item -Path ./ab.txt -Destination C:\deployment
