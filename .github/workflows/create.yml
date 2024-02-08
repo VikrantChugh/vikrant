@@ -27,11 +27,11 @@ jobs:
           aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
           aws-session-token: ${{secrets.AWS_SESSION_TOKEN}}
           Aws-region: ${{env.aws-region}}
-      - name: Start Session Manager session
-        run: |
-          aws ssm start-session --target i-071a4716e15bd8b94
-      # - name: Copy file to Windows server
+      # - name: Start Session Manager session
       #   run: |
-      #     pwd
-      #     ls
-      #     scp -i ./Test-discovery.pem ./abc.txt Administrator@10.10.2.12:C:\deployment
+      #     aws ssm start-session --target i-071a4716e15bd8b94
+      - name: Copy file to Windows server
+        run: |
+          pwd
+          ls
+          scp -i ./Test-discovery.pem ./abc.txt Administrator@10.10.2.12:C:\deployment
