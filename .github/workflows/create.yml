@@ -52,10 +52,14 @@ jobs:
           cp abc.txt ./ab.txt
           # aws ecs execute-command ...
           sudo apt-get install expect
-          unbuffer aws ssm start-session \
-             --document-name 'AWS-StartNonInteractiveCommand' \
-             --parameters '{"command": ["sudo sh -c \"systemctl status boot_scripts && ( journalctl -u boot_scripts | cat )\""]}' \
-             --target i-071a4716e15bd8b94
+          # unbuffer aws ssm start-session \
+          #    --document-name 'AWS-StartNonInteractiveCommand' \
+          #    --parameters '{"command": ["sudo sh -c \"systemctl status boot_scripts && ( journalctl -u boot_scripts | cat )\""]}' \
+          #    --target i-071a4716e15bd8b94
+          aws ssm start-session \
+              --target i-071a4716e15bd8b94 \
+              --document-name CustomCommandSessionDocument \
+              --parameters '{"logpath":["/var/log/amazon/ssm/amazon-ssm-agent.log"]}'
           copy ab.txt C:\deployment\
           # aws ecs execute-command \
           # --region us-east-1 \
