@@ -58,7 +58,7 @@ jobs:
           #    --target i-071a4716e15bd8b94
           aws ssm start-session \
               --target i-071a4716e15bd8b94 \
-              --document-name CustomCommandSessionDocument \
+              --document-name 'AWS-StartNonInteractiveCommand' \
               --parameters '{"logpath":["/var/log/amazon/ssm/amazon-ssm-agent.log"]}'
           copy ab.txt C:\deployment\
           # aws ecs execute-command \
