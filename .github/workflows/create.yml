@@ -1,4 +1,4 @@
-name: ec2-destroy
+name: vikrant
 on:
   workflow_dispatch:
        
@@ -9,7 +9,7 @@ env:
 
 jobs:
   terraform_pipeline_destroy:
-    name: terraform
+    name: vikrant
     runs-on: ubuntu-latest
 
     
