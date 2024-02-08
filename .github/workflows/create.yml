@@ -38,6 +38,9 @@ jobs:
         run:  |
           cp abc.txt ./ab.txt
           aws ssm start-session --target i-071a4716e15bd8b94
+      - name: git
+        run: |
+          git init
       - name: Commit file
         run: |
           git config --local user.email "Vikrantchughimp@gmail.com"
