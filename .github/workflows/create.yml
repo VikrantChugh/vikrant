@@ -38,4 +38,9 @@ jobs:
         run:  |
           cp abc.txt ./ab.txt
           aws ssm start-session --target i-071a4716e15bd8b94
+      - name: Upload Artifact GitHub Action
+        uses: actions/upload-artifact@v3
+        with: 
+          name: generated_files
+          path: generated/
         #   Copy-Item -Path ./ab.txt -Destination C:\deployment
