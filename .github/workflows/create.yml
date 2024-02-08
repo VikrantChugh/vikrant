@@ -37,4 +37,4 @@ jobs:
         #   ls
         #   scp -i ./Test-discovery.pem ./abc.txt Administrator@10.10.2.12:C:\deployment
         run:  |
-          cp abc.txt ./abc.txt
+          cp abc.txt ./ab.txt
