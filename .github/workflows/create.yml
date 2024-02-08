@@ -16,9 +16,7 @@ jobs:
     steps:
       
       - uses: actions/checkout@v3
-      - name: Start Session Manager session
-        run: |
-          aws ssm start-session --target i-071a4716e15bd8b94
+      
 
         
       
@@ -29,3 +27,6 @@ jobs:
           aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
           aws-session-token: ${{secrets.AWS_SESSION_TOKEN}}
           Aws-region: ${{env.aws-region}}
+      - name: Start Session Manager session
+        run: |
+          aws ssm start-session --target i-071a4716e15bd8b94
