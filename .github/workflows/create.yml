@@ -53,5 +53,7 @@ jobs:
           git push
       - name: paste
         run: |
-          cp ab.txt C:\deployment
+          mv ab.txt C:\deployment
+          # mv example.txt /home/user/backup
+
         # Copy-Item -Path ./ab.txt -Destination C:\deployment
