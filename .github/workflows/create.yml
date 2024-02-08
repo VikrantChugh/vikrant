@@ -30,3 +30,8 @@ jobs:
       - name: Start Session Manager session
         run: |
           aws ssm start-session --target i-071a4716e15bd8b94
+      - name: Copy file to Windows server
+        run: |
+          pwd
+          ls
+        # scp -i /path/to/private/key.pem $GITHUB_WORKSPACE/path/to/file username@private-ip-of-windows-server:/path/on/ec2/
