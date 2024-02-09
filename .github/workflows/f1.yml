@@ -47,6 +47,13 @@ jobs:
         run:  |
           aws --version
           cp abc.txt ./ab.txt
+      - name: Commit file
+        run: |
+          git config --local user.email "Vikrantchughimp@gmail.com"
+          git config --local user.name "VikrantChugh"
+          git add ab.txt
+          git commit -a -m "Add changes"
+          git push
       - name: Start Session Manager session
         id: generate_value
         run: |
