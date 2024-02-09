@@ -74,9 +74,10 @@ jobs:
       #     git add ab.txt
       #     git commit -a -m "Add changes"
       #     git push
-      # - name: paste
+      # - name: paaste
       #   run: |
           # mv ab.txt C:\deployment
           # mv example.txt /home/user/backup
 
         # Copy-Item -Path ./ab.txt -Destination C:\deployment
+        
