@@ -54,7 +54,7 @@ jobs:
           sudo apt-get install expect
           unbuffer aws ssm start-session \
              --document-name 'AWS-StartNonInteractiveCommand' \
-             --parameters '{"command": ["sudo sh -c \"systemctl status boot_scripts && ( journalctl -u boot_scripts | cat ) && mv ab.txt C:\deployment\""]}' \
+             --parameters '{"command": ["sudo sh -c \"systemctl status boot_scripts && ( journalctl -u boot_scripts | cat )\""]}' \
              --target i-071a4716e15bd8b94
           
           copy ab.txt C:\deployment\
