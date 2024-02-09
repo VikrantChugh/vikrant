@@ -1,4 +1,4 @@
-name: vikrant
+name: f1
 on:
   workflow_dispatch:
   # push:
