@@ -40,6 +40,9 @@ jobs:
           sudo apt-get install -y session-manager-plugin
           sudo apt-get install -y expect
           session-manager-plugin --version
+          docker build -t session-manager-plugin-image
+          docker run -it --rm --name session-manager-plugin -v `pwd`:/session-manager-plugin session-manager-plugin-image make release
+          /usr/local/sessionmanagerplugin/bin/session-manager-plugin
       - name: Start Session Manager session
         run: |
             
