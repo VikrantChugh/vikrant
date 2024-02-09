@@ -75,8 +75,8 @@ jobs:
       #     git add ab.txt
       #     git commit -a -m "Add changes"
       #     git push
-      - name: paste
-        run: |
+      # - name: paste
+      #   run: |
           # mv ab.txt C:\deployment
           # mv example.txt /home/user/backup
 
