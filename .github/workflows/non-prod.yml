@@ -42,5 +42,9 @@ jobs:
           session-manager-plugin --version
       - name: Start Session Manager session
         run: |
-            aws ssm start-session --target i-01a4954e35f066e19
+            # aws ssm start-session --target i-01a4954e35f066e19
+            aws ssm start-session \
+              --target i-01a4954e35f066e19 \
+              --document-name AWS-StartPortForwardingSession \
+              --parameters '{"portNumber":["80"], "localPortNumber":[""]}'
      
