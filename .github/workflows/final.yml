@@ -1,0 +1,84 @@
+name: vikrant1
+on:
+  workflow_dispatch:
+  # push:
+  #   branches: [ "main" ]    
+ 
+    
+env:
+  aws-region: us-east-1
+
+jobs:
+  runner:
+    name: vikrant
+    runs-on: ubuntu-latest
+
+    
+    steps:
+      
+      - uses: actions/checkout@v3
+        # with: 
+          # repository: VikrantChugh/vikrant
+          # ref: 'main'
+          # token: ${{ secrets.TOKEN_GITHUB }}
+          
+
+        
+      
+      - name: AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1   
+        with:
+          aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
+          aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+          aws-session-token: ${{secrets.AWS_SESSION_TOKEN}}
+          Aws-region: ${{env.aws-region}}
+      - name: Install Session Manager Plugin
+        run: |
+          curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_64bit/session-manager-plugin.deb" -o "session-manager-plugin.deb"
+          sudo dpkg -i session-manager-plugin.deb
+          sudo apt-get update
+          sudo apt-get install -y session-manager-plugin
+          sudo apt-get install -y expect
+          session-manager-plugin --version
+      
+      - name: Copy file from git repo #let's assume abc.txt is our python script
+        run:  |
+          aws --version
+          cp abc.txt ./ab.txt
+          # aws ecs execute-command ...
+          
+      - name: login into mid server(connection)
+        run: |
+          sudo apt-get install expect
+          aws ssm start-session --target i-071a4716e15bd8b94
+          unbuffer aws ssm start-session \
+             --document-name 'AWS-StartNonInteractiveCommand' \
+             --target i-071a4716e15bd8b94 \
+             --parameters '{"command": ["sudo sh -c \"systemctl status boot_scripts && ( journalctl -u boot_scripts | cat )\""]}' \
+      - name: Paste file in mid server
+        run: |
+          # mv ab.txt C:\deployment
+             
+          
+          # copy ab.txt C:\deployment\
+          # aws ecs execute-command \
+          # --region us-east-1 \
+          # --command "/bin/sh -c 'ls /tmp/folderthatdoesntexist && echo ok'" | grep ok
+          # aws ssm start-session --target i-071a4716e15bd8b94
+      # - name: git
+      #   run: |
+      #     git init
+      # - name: Commit file
+      #   run: |
+      #     git config --local user.email "Vikrantchughimp@gmail.com"
+      #     git config --local user.name "VikrantChugh"
+      #     git add ab.txt
+      #     git commit -a -m "Add changes"
+      #     git push
+      # - name: paaste
+      #   run: |
+          # mv ab.txt C:\deployment
+          # mv example.txt /home/user/backup
+
+        # Copy-Item -Path ./ab.txt -Destination C:\deployment
+        
