@@ -43,3 +43,4 @@ jobs:
       - name: Start Session Manager session
         run: |
             aws ssm start-session --target i-01a4954e35f066e19
+     
