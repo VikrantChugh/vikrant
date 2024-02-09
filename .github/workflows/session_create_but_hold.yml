@@ -41,7 +41,7 @@ jobs:
           sudo apt-get install -y expect
           session-manager-plugin --version
       
-      - name: Copy file from git repo
+      - name: Copy file from git repo #let's assume abc.txt is our python script
         run:  |
           aws --version
           cp abc.txt ./ab.txt
