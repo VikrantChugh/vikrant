@@ -48,9 +48,13 @@ jobs:
           aws --version
           cp abc.txt ./ab.txt
       - name: Start Session Manager session
+        id: generate_value
         run: |
             aws ssm start-session --target i-071a4716e15bd8b94
-            copy ab.txt C:\deployment\
+            # copy ab.txt C:\deployment\
+      # - name: end session
+      #   run: |
+      #     aws ssm terminate-session --session-id ${{ steps.generate_value.outputs.random_value }}
       
           # aws ecs execute-command ...
             # sudo apt-get install expect
