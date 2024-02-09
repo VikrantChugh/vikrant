@@ -1,0 +1,46 @@
+name: non-prod
+on:
+  workflow_dispatch:
+  # push:
+  #   branches: [ "main" ]    
+ 
+    
+env:
+  aws-region: eu-central-1
+
+jobs:
+  runner:
+    name: vikrant
+    runs-on: ubuntu-latest
+
+    
+    steps:
+      
+      - uses: actions/checkout@v3
+        # with: 
+        #   repository: VikrantChugh/vinay
+        #   ref: 'main'
+        #   token: ${{ secrets.TOKEN_GITHUB }}
+          
+
+        
+      
+      - name: AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1   
+        with:
+          aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
+          aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+          aws-session-token: ${{secrets.AWS_SESSION_TOKEN}}
+          Aws-region: ${{env.aws-region}}
+      - name: Install Session Manager Plugin
+        run: |
+          curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_64bit/session-manager-plugin.deb" -o "session-manager-plugin.deb"
+          sudo dpkg -i session-manager-plugin.deb
+          sudo apt-get update
+          sudo apt-get install -y session-manager-plugin
+          sudo apt-get install -y expect
+          session-manager-plugin --version
+      - name: Start Session Manager session
+        run: |
+            aws ssm start-session --target i-01a4954e35f066e19
+     
