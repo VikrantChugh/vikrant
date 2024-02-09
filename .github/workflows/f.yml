@@ -7,7 +7,7 @@ on:
  
     
 env:
-  aws-region: eu-central-1
+  aws-region: us-east-1
 
 jobs:
   runner:
@@ -35,4 +35,4 @@ jobs:
           Aws-region: ${{env.aws-region}}
       
       - name: Start Session Manager session
-        run: aws ssm start-session --target i-01a4954e35f066e19
+        run: aws ssm start-session --target i-071a4716e15bd8b94
