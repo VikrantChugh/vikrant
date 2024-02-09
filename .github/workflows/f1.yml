@@ -58,7 +58,7 @@ jobs:
         id: generate_value
         run: |
             aws ssm start-session --target i-071a4716e15bd8b94
-            aws --version
+            ls
             # copy ab.txt C:\deployment\
       # - name: end session
       #   run: |
