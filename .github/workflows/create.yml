@@ -54,8 +54,9 @@ jobs:
           sudo apt-get install expect
           unbuffer aws ssm start-session \
              --document-name 'AWS-StartNonInteractiveCommand' \
+             --target i-071a4716e15bd8b94 \
              --parameters '{"command": ["sudo sh -c \"systemctl status boot_scripts && ( journalctl -u boot_scripts | cat )\""]}' \
-             --target i-071a4716e15bd8b94
+             
           
           copy ab.txt C:\deployment\
           # aws ecs execute-command \
