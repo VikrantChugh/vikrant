@@ -1,8 +1,8 @@
 name: vikrant
 on:
   workflow_dispatch:
-  push:
-    branches: [ "main" ]    
+  # push:
+  #   branches: [ "main" ]    
  
     
 env:
