@@ -40,9 +40,9 @@ jobs:
           sudo apt-get install -y session-manager-plugin
           sudo apt-get install -y expect
           session-manager-plugin --version
-      # - name: Start Session Manager session
-      #   run: |
-      #     aws ssm start-session --target i-071a4716e15bd8b94
+      - name: Start Session Manager session
+        run: |
+            aws ssm start-session --target i-071a4716e15bd8b94
       - name: Copy file to Windows server
         # run: |
         #   cd C:\actions-runner\_work\
@@ -58,11 +58,11 @@ jobs:
           #    --parameters '{"command": ["sudo sh -c \"systemctl status boot_scripts && ( journalctl -u boot_scripts | cat )\""]}' \
              
           
-          copy ab.txt C:\deployment\
+          # copy ab.txt C:\deployment\
           # aws ecs execute-command \
           # --region us-east-1 \
           # --command "/bin/sh -c 'ls /tmp/folderthatdoesntexist && echo ok'" | grep ok
-          aws ssm start-session --target i-071a4716e15bd8b94
+          # aws ssm start-session --target i-071a4716e15bd8b94
       # - name: git
       #   run: |
       #     git init
