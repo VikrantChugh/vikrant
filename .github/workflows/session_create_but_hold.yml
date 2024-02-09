@@ -41,16 +41,22 @@ jobs:
           sudo apt-get install -y expect
           session-manager-plugin --version
       
-      - name: Copy file to Windows server
+      - name: Copy file from git repo
         run:  |
           aws --version
           cp abc.txt ./ab.txt
           # aws ecs execute-command ...
+          
+      - name: login into mid server(connection)
+        run: |
           sudo apt-get install expect
           unbuffer aws ssm start-session \
              --document-name 'AWS-StartNonInteractiveCommand' \
              --target i-071a4716e15bd8b94 \
              --parameters '{"command": ["sudo sh -c \"systemctl status boot_scripts && ( journalctl -u boot_scripts | cat )\""]}' \
+      - name: Paste file in mid server
+        run: |
+          # mv ab.txt C:\deployment
              
           
           # copy ab.txt C:\deployment\
@@ -68,8 +74,8 @@ jobs:
       #     git add ab.txt
       #     git commit -a -m "Add changes"
       #     git push
-      - name: paste
-        run: |
+      # - name: paste
+      #   run: |
           # mv ab.txt C:\deployment
           # mv example.txt /home/user/backup
 
