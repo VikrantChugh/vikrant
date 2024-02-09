@@ -42,9 +42,4 @@ jobs:
           session-manager-plugin --version
       - name: Start Session Manager session
         run: |
-            # aws --version
-            # cp abc.txt ./ab.txt
             aws ssm start-session --target i-01a4954e35f066e19
-            # copy ab.txt C:\deployment\
-            
-     
