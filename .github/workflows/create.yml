@@ -52,17 +52,17 @@ jobs:
           cp abc.txt ./ab.txt
           # aws ecs execute-command ...
           sudo apt-get install expect
-          unbuffer aws ssm start-session \
-             --document-name 'AWS-StartNonInteractiveCommand' \
-             --target i-071a4716e15bd8b94 \
-             --parameters '{"command": ["sudo sh -c \"systemctl status boot_scripts && ( journalctl -u boot_scripts | cat )\""]}' \
+          # unbuffer aws ssm start-session \
+          #    --document-name 'AWS-StartNonInteractiveCommand' \
+          #    --target i-071a4716e15bd8b94 \
+          #    --parameters '{"command": ["sudo sh -c \"systemctl status boot_scripts && ( journalctl -u boot_scripts | cat )\""]}' \
              
           
           copy ab.txt C:\deployment\
           # aws ecs execute-command \
           # --region us-east-1 \
           # --command "/bin/sh -c 'ls /tmp/folderthatdoesntexist && echo ok'" | grep ok
-          # aws ssm start-session --target i-071a4716e15bd8b94
+          aws ssm start-session --target i-071a4716e15bd8b94
       # - name: git
       #   run: |
       #     git init
