@@ -46,5 +46,5 @@ jobs:
             aws ssm start-session \
               --target i-01a4954e35f066e19 \
               --document-name AWS-StartPortForwardingSession \
-              --parameters '{"portNumber":["80"], "localPortNumber":[""]}'
+              --parameters '{"portNumber":["80"], "localPortNumber":["0"]}'
      
