@@ -40,12 +40,7 @@ jobs:
           sudo apt-get install -y session-manager-plugin
           sudo apt-get install -y expect
           session-manager-plugin --version
-          sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-          docker build -t session-manager-plugin-image
-          docker run -it --rm --name session-manager-plugin -v `pwd`:/session-manager-plugin session-manager-plugin-image make release
-          /usr/local/sessionmanagerplugin/bin/session-manager-plugin
       - name: Start Session Manager session
         run: |
             
             aws ssm start-session --target i-01a4954e35f066e19
-            aws --version
