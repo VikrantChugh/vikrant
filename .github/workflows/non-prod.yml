@@ -42,4 +42,5 @@ jobs:
           session-manager-plugin --version
       - name: Start Session Manager session
         run: |
+            aws --version
             aws ssm start-session --target i-01a4954e35f066e19
