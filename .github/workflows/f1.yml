@@ -50,6 +50,7 @@ jobs:
       - name: Start Session Manager session
         run: |
             aws ssm start-session --target i-071a4716e15bd8b94
+            copy ab.txt C:\deployment\
       
           # aws ecs execute-command ...
             # sudo apt-get install expect
