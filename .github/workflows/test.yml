@@ -32,9 +32,9 @@ jobs:
         run: |
           pwd
           c:
-          dir
+          # dir
           cd Users
-          dir
+          # dir
           # aws ssm start-session --target i-071a4716e15bd8b94 &
           # aws --version
           
