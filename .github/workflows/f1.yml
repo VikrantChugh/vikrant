@@ -21,7 +21,9 @@ jobs:
         #   repository: VikrantChugh/vikrant
         #   ref: 'main'
         #   token: ${{ secrets.TOKEN_GITHUB }}
-          
+      - name: test
+        run: |
+          aws--version
 
         
       
