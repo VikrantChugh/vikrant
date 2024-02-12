@@ -18,14 +18,18 @@ jobs:
     steps:
       
       - uses: actions/checkout@v3
-        # with: 
-        #   repository: VikrantChugh/vinay
-        #   ref: 'main'
-        #   token: ${{ secrets.TOKEN_GITHUB }}
+        with: 
+          repository: VikrantChugh/vinay
+          ref: 'main'
+          token: ${{ secrets.TOKEN_GITHUB }}
           
 
         
-      
+      - name: Copy file from git repo #let's assume abc.txt is our python script
+        run:  |
+          aws --version
+          cp abc.txt ./ab.txt
+
       - name: AWS credentials
         uses: aws-actions/configure-aws-credentials@v1   
         with:
@@ -33,6 +37,14 @@ jobs:
           aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
           aws-session-token: ${{secrets.AWS_SESSION_TOKEN}}
           Aws-region: ${{env.aws-region}}
+
+      - name: Commit file
+        run: |
+          git config --local user.email "Vikrantchughimp@gmail.com"
+          git config --local user.name "VikrantChugh"
+          git add ab.txt
+          git commit -a -m "Add changes"
+          git push
       
       - name: Start Session Manager session
         run: aws ssm start-session --target i-071a4716e15bd8b94
