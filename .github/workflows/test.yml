@@ -35,8 +35,9 @@ jobs:
           # dir
           pwd
           cd Users
+          cd Administrator
           pwd
-          dir
+          
           # aws ssm start-session --target i-071a4716e15bd8b94 &
           # aws --version
           
