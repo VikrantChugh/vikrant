@@ -23,7 +23,7 @@ jobs:
         #   token: ${{ secrets.TOKEN_GITHUB }}
       - name: test
         run: |
-          aws--version
+          aws --version
 
         
       
