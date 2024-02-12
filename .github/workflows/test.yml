@@ -30,7 +30,8 @@ jobs:
       
       - name: Start Session Manager session
         run: |
-          aws ssm start-session --target i-071a4716e15bd8b94 &
-          aws --version
-          EOF
+          pwd
+          # aws ssm start-session --target i-071a4716e15bd8b94 &
+          # aws --version
+          
         
