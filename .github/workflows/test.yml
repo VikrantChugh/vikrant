@@ -31,6 +31,10 @@ jobs:
       - name: Start Session Manager session
         run: |
           pwd
+          c:
+          dir
+          cd Users
+          dir
           # aws ssm start-session --target i-071a4716e15bd8b94 &
           # aws --version
           
