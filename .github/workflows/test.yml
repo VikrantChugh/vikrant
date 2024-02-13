@@ -24,21 +24,13 @@ jobs:
         with:
           aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
           aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
-          aws-session-token: ${{secrets.AWS_SESSION_TOKEN}}
+          # aws-session-token: ${{secrets.AWS_SESSION_TOKEN}}
           Aws-region: ${{env.aws-region}}
 
       
       - name: Start Session Manager session
         run: |
-          pwd
-          c:
-          # dir
-          pwd
-          cd Users
-          cd Administrator
-          pwd
-          
-          # aws ssm start-session --target i-071a4716e15bd8b94 &
-          # aws --version
+          aws ssm start-session --target i-071a4716e15bd8b94 &
+          aws --version
           
         
