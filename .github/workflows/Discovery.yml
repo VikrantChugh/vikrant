@@ -11,23 +11,22 @@ env:
 
 jobs:
   runner:
-    name: vikrant
+    name: pipeline-test
     runs-on: windows-latest
 
     
     steps:
       
       - uses: actions/checkout@v3
-        with: 
-          repository: VikrantChugh/vikrant
-          ref: 'main'
-          token: ${{ secrets.TOKEN_GITHUB }}
+        # with: 
+        #   repository: VikrantChugh/vikrant
+        #   ref: 'main'
+        #   token: ${{ secrets.TOKEN_GITHUB }}
           
 
         
-      - name: Copy file from git repo #let's assume abc.txt is our python script
+      - name: Copy file from git repo 
         run:  |
-          # aws --version
           cp McDOptimized.py ./ab.txt
 
       - name: AWS credentials
@@ -35,20 +34,82 @@ jobs:
         with:
           aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
           aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
-          # aws-session-token: ${{secrets.AWS_SESSION_TOKEN}}
           Aws-region: ${{env.aws-region}}
 
-      - name: Commit file
-        run: |
-          git config --local user.email "Vikrantchughimp@gmail.com"
-          git config --local user.name "VikrantChugh"
-          git add ab.txt
-          git commit -a -m "Add changes"
-          git push
+    
       
-      # - name: Start Session Manager session
+      - name: Start Session Manager session
+        run: |
+          aws ssm start-session --target i-071a4716e15bd8b94
+          aws --version
+
+   # - name: Install Session Manager Plugin
       #   run: |
-      #     aws ssm start-session --target i-071a4716e15bd8b94
-      #     dir
-        
+      #     curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_64bit/session-manager-plugin.deb" -o "session-manager-plugin.deb"
+      #     sudo dpkg -i session-manager-plugin.deb
+      #     sudo apt-get update
+      #     sudo apt-get install -y session-manager-plugin
+      #     sudo apt-get install -y expect
+      #     session-manager-plugin --version
+      # - name: Copy file to Windows server
+        # run: |
+        #   cd C:\actions-runner\_work\
+        #   scp -i ./Test-discovery.pem ./abc.txt Administrator@10.10.2.12:C:\deployment
+        # run:  |
+        #   aws --version
+        #   cp abc.txt ./ab.txt
+      # - name: Commit file
+      #   run: |
+      #     git config --local user.email "Vikrantchughimp@gmail.com"
+      #     git config --local user.name "VikrantChugh"
+      #     git add ab.txt
+      #     git commit -a -m "Add changes"
+      #     git push
+      # - name: Start Session Manager session
+      #   id: generate_value
+      #   run: |
+      #       aws ssm start-session --target i-071a4716e15bd8b94 &
+      #       ls
+      #       aws --version
+            # copy ab.txt C:\deployment\
+      # - name: end session
+      #   run: |
+      #     aws ssm terminate-session --session-id ${{ steps.generate_value.outputs.random_value }}
+      
+          # aws ecs execute-command ...
+            # sudo apt-get install expect
+          # unbuffer aws ssm start-session \
+          #    --document-name 'AWS-StartNonInteractiveCommand' \
+          #    --target i-071a4716e15bd8b94 \
+          #    --parameters '{"command": ["sudo sh -c \"systemctl status boot_scripts && ( journalctl -u boot_scripts | cat )\""]}' \
+             
+          
+          # copy ab.txt C:\deployment\
+          # aws ecs execute-command \
+          # --region us-east-1 \
+          # --command "/bin/sh -c 'ls /tmp/folderthatdoesntexist && echo ok'" | grep ok
+          # aws ssm start-session --target i-071a4716e15bd8b94
+      # - name: git
+      #   run: |
+      #     git init
+      # - name: Commit file
+      #   run: |
+      #     git config --local user.email "Vikrantchughimp@gmail.com"
+      #     git config --local user.name "VikrantChugh"
+      #     git add ab.txt
+      #     git commit -a -m "Add changes"
+      #     git push
+      # - name: paste
+      #   run: |
+          # mv ab.txt C:\deployment
+          # mv example.txt /home/user/backup
+
+        # Copy-Item -Path ./ab.txt -Destination C:\deployment
+        # - name: Start Session Manager session
+        # run: |
+        #     # aws ssm start-session --target i-01a4954e35f066e19
+        #     aws ssm start-session \
+        #       --target i-01a4954e35f066e19 \
+        #       --document-name AWS-StartPortForwardingSession \
+        #       --parameters '{"portNumber":["80"], "localPortNumber":["0"]}'
            
