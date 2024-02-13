@@ -7,7 +7,7 @@ on:
  
     
 env:
-  aws-region: ap-south-1
+  aws-region: us-east-1
 
 jobs:
   runner:
@@ -24,14 +24,14 @@ jobs:
         with:
           aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
           aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
-          aws-session-token: ${{secrets.AWS_SESSION_TOKEN}}
+          # aws-session-token: ${{secrets.AWS_SESSION_TOKEN}}
           Aws-region: ${{env.aws-region}}
       
 
       
       - name: Start Session Manager session
         run: |
-          aws ssm start-session --target i-0e74fe32d13d3977f
+          aws ssm start-session --target i-071a4716e15bd8b94 
           aws --version
           
         
