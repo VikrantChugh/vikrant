@@ -1,5 +1,5 @@
 
-name: f
+name: Discovery
 on:
   workflow_dispatch:
   # push:
