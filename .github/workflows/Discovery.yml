@@ -40,11 +40,8 @@ jobs:
       
       - name: Start Session Manager session
         run: |
-          # aws ssm start-session --target i-071a4716e15bd8b94
-          run: |
-            $session_id = aws ssm start-session --target i-071a4716e15bd8b94 --document-name AWS-RunPowerShellScript --output text --query 'SessionId'
-            echo "::set-output name=session-id::$session_id"
-          # aws --version
+           aws ssm start-session --target i-071a4716e15bd8b94
+           aws --version
 
    # - name: Install Session Manager Plugin
       #   run: |
