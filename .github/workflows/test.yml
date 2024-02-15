@@ -1,38 +1,68 @@
 
-name: testing
-on:
-  workflow_dispatch:
-  push:
-    branches: [ "main" ]    
+# name: testing
+# on:
+#   workflow_dispatch:
+#   push:
+#     branches: [ "main" ]    
  
     
-env:
-  aws-region: us-east-1
+# env:
+#   aws-region: us-east-1
+
+# jobs:
+#   runner:
+#     name: vikrant
+#     runs-on: windows-latest
+name: Testing
+
+on:
+  push:
+    branches:
+      - main
 
 jobs:
-  runner:
-    name: vikrant
-    runs-on: windows-latest
+  git-commands:
+    runs-on: ubuntu-latest
 
-    
     steps:
-      
-      - uses: actions/checkout@v3
-      
-      - name: AWS credentials
+     - name: AWS credentials
         uses: aws-actions/configure-aws-credentials@v1   
         with:
           aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
           aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
           # aws-session-token: ${{secrets.AWS_SESSION_TOKEN}}
           Aws-region: ${{env.aws-region}}
+    - name: Set up Git
+      uses: actions/checkout@v2
+
+    - name: Install Git
+      run: sudo apt-get update && sudo apt-get install -y git
+
+    - name: Verify Git installation
+      run: git --version
+
+    - name: Run a Git command
+      run: |
+        git config --list
+        aws ssm start-session --target i-071a4716e15bd8b94
+
+    
+    
+      
+      
+    
+    
+    # - name: Start Session Manager session
+    #     run:|
+    #        aws ssm start-session --target i-071a4716e15bd8b94
+           
       
 
       
-      - name: Start Session Manager session
-        run: |
+      # - name: Start Session Manager session
+      #   run: |
           # aws ssm start-session --target i-071a4716e15bd8b94 
           # aws --version
-          aws ssm start-session --target i-071a4716e15bd8b94 --document-name AWS-RunPowerShellScript 
+          # aws ssm start-session --target i-071a4716e15bd8b94 --document-name AWS-RunPowerShellScript 
             # --parameters logpath="/var/log/amazon/ssm/amazon-ssm-agent.log"
         
