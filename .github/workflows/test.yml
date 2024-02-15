@@ -34,7 +34,7 @@ jobs:
           # aws ssm start-session --target i-071a4716e15bd8b94 
           # aws --version
           aws ssm send-command \
-            --instance-ids i-071a4716e15bd8b94 \
+            --instance-ids "i-071a4716e15bd8b94" \
             --document-name "AWS-RunShellScript" \
             --parameters '{"commands":["your_query_command_here"]}' \
             --region us-east-1
