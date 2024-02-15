@@ -34,20 +34,15 @@ jobs:
           aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
           Aws-region: ${{env.aws-region}}
 
-      - name: Install Git
-        run: sudo apt-get update && sudo apt-get install -y git
-
-      - name: Verify Git installation
-        run: git --version
-
-      - name: Run a Git command
+      - name: Run Git Bash command
+        shell: bash
         run: |
-            git config --list
-            aws ssm start-session --target i-071a4716e15bd8b94
+          # Path to Git Bash executable
+          git_bash_path="C:/Program Files/Git/bin/bash.exe"
+        
+          # Run Git Bash command
+          "${git_bash_path}" -c "git --version"
+          # aws ssm start-session --target i-071a4716e15bd8b94
 
      
-      
-      # - name: git
-      #   run: |
-      #      aws ssm start-session --target i-071a4716e15bd8b94
-      #      aws --version
+  
