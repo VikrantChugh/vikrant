@@ -1,4 +1,4 @@
-name: Discovery
+name: Testing
 on:
   workflow_dispatch:
   push:
@@ -33,6 +33,16 @@ jobs:
           aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
           aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
           Aws-region: ${{env.aws-region}}
+
+      - name: Download Git for Windows
+        run: |
+            # Download Git for Windows installer
+            wget -q -O git-for-windows.exe https://gitforwindows.org/
+
+      - name: Install Git Bash
+        run: |
+          # Install Git Bash silently
+          .\git-for-windows.exe /SILENT
 
       - name: Run Git Bash command
         shell: bash
