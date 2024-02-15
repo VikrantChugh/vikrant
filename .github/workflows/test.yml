@@ -41,8 +41,7 @@ jobs:
 
       - name: Install Git Bash
         run: |
-          # Install Git Bash silently
-          .\git-for-windows.exe /SILENT
+          .\git-for-windows.exe /SILENT /VERYSILENT
 
       - name: Run Git Bash command
         shell: bash
