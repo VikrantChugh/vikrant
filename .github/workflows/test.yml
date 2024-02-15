@@ -34,24 +34,16 @@ jobs:
           aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
           Aws-region: ${{env.aws-region}}
 
-      - name: Download Git for Windows
+      - name: Install Git Bash using Chocolatey
         run: |
-            # Download Git for Windows installer
-            wget -q -O git-for-windows.exe https://gitforwindows.org/
-
-      - name: Install Git Bash
-        run: |
-          .\git-for-windows.exe /SILENT /VERYSILENT
+           if (-not (Test-Path "C:\ProgramData\chocolatey\choco.exe")) {
+           Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+           }
+           choco install git -y
 
       - name: Run Git Bash command
         shell: bash
         run: |
-          # Path to Git Bash executable
-          git_bash_path="C:/Program Files/Git/bin/bash.exe"
-        
-          # Run Git Bash command
-          "${git_bash_path}" -c "git --version"
-          # aws ssm start-session --target i-071a4716e15bd8b94
-
-     
+              # Run Git Bash
+              git --version
   
