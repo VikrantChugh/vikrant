@@ -2,8 +2,8 @@
 name: testing
 on:
   workflow_dispatch:
-  # push:
-  #   branches: [ "main" ]    
+  push:
+    branches: [ "main" ]    
  
     
 env:
@@ -35,7 +35,7 @@ jobs:
           # aws --version
           aws ssm send-command \
             --instance-ids "i-071a4716e15bd8b94" \
-            --document-name "AWS-RunShellScript" \
+            --document-name "AWS-RunPowerShellScript" \
             --parameters '{"commands":["your_query_command_here"]}' \
             --region us-east-1
           
