@@ -50,5 +50,6 @@ jobs:
       #         git --version
       - name: Execute Deployment via SSM
         run: |
+          pwd
           aws ssm send-command --document-name "AWS-RunPowerShellScript" --targets "i-071a4716e15bd8b94" --parameters commands=["cd C:\\path\\to\\vikrant", "python deploy.py"]
   
