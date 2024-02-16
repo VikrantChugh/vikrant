@@ -1,8 +1,8 @@
 name: Testing
 on:
   workflow_dispatch:
-  push:
-    branches: [ "main" ]    
+  # push:
+  #   branches: [ "main" ]    
  
     
 env:
@@ -34,15 +34,18 @@ jobs:
           aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
           Aws-region: ${{env.aws-region}}
 
-      - name: Install Git Bash using Chocolatey
-        run: |
+      # - name: Install Git Bash using Chocolatey
+      #   run: |
            
-           Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-           choco install git -y
+      #      Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+      #      choco install git -y
 
-      - name: Run Git Bash command
-        shell: bash
+      # - name: Run Git Bash command
+      #   shell: bash
+      #   run: |
+      #         # Run Git Bash
+      #         git --version
+      - name: Execute Deployment via SSM
         run: |
-              # Run Git Bash
-              git --version
+          aws ssm send-command --document-name "AWS-RunPowerShellScript" --targets "Key=instanceids,Values=i-071a4716e15bd8b94" --parameters commands=["cd C:\\path\\to\\vikrant", "python deploy.py"]
   
