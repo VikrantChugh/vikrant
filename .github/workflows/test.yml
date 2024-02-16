@@ -51,5 +51,5 @@ jobs:
       - name: Execute Deployment via SSM
         run: |
           pwd
-          aws ssm send-command --document-name "AWS-RunPowerShellScript" --targets "Values=i-071a4716e15bd8b94" --parameters commands=["cd D:\\a\\vikrant\\vikrant" , "python deploy.py"]
+          aws ssm send-command --document-name "AWS-RunPowerShellScript" --targets "Values=i-071a4716e15bd8b94" --parameters commands=["cd D:\\a\\vikrant" , "python deploy.py"]
   
